@@ -1,5 +1,5 @@
 """
-encode_categorical_variables.py
+data_encode_categorical.py
 
 Chapter: Preprocessing
 Topic: Data Transformation (Categorical)
