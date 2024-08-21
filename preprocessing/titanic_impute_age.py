@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import seaborn as sns
 
@@ -36,4 +37,4 @@ age_means = df.groupby("who")["age"].mean()
 df['age_imputed'] = df['age'].fillna(df.groupby("who")["age"].transform('mean'))
 
 # Print the columns we touched to test
-print(df[["who", "age", "age_imputed"]].tail(10))
+print(df[df["age"].isna()][["who", "age", "age_imputed"]].tail(30))

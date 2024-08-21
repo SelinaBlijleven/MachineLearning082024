@@ -1,5 +1,5 @@
 """
-titanic_exercise.py
+titanic_predict_deck.py
 
 During the titanic exercise, we found that the missing deck values were hard to handle.
 This script will attempt to predict the deck values.
@@ -28,6 +28,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.tree import DecisionTreeClassifier
 
 # Choose your fighter: "LogisticRegression", "KNN", "SVM", "GaussianNB", "DecisionTree", "RandomForest", "MLP"
@@ -65,6 +66,10 @@ def prepare_data(df: pd.DataFrame):
     # Convert the categorical variables and set X and y
     X = pd.get_dummies(feats)
     y = deck_info['deck']
+
+    # Normalize the features
+    scaler = MinMaxScaler()
+    X = scaler.fit_transform(X, y)
 
     return X, y
 
