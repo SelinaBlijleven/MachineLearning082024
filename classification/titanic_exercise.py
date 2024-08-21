@@ -3,6 +3,14 @@ titanic_exercise.py
 
 During the titanic exercise, we found that the missing deck values were hard to handle.
 This script will attempt to predict the deck values.
+
+On the results: most classifiers have a weak performance on this task, generally
+confusing the decks right above and below the target deck with the target.
+Best results so far seem to come from the RandomForest, which might benefit from fine-tuning.
+
+However, if we analyse the Titanic dataset and its properties, we don't seem to have enough
+information to predict this. We do have the 'class' column, which is more generalized than the deck column.
+This column ís in fact complete and is perhaps better to use for our prediction.
 """
 # The basics
 import pandas as pd
