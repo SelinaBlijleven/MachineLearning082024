@@ -32,7 +32,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.tree import DecisionTreeClassifier
 
 # Choose your fighter: "LogisticRegression", "KNN", "SVM", "GaussianNB", "DecisionTree", "RandomForest", "MLP"
-MODEL = "RandomForest"
+MODEL = "DecisionTree"
 
 
 def main():
@@ -90,7 +90,7 @@ def fit_model(X_train, y_train):
         clf = MLPClassifier()
     # Default: SVM
     else:
-        clf = svm.SVC(kernel='rbf')
+        clf = svm.SVC(kernel='linear')
 
     # Fit the classifier
     clf.fit(X_train, y_train)
