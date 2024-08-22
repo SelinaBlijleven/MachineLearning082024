@@ -1,6 +1,8 @@
 """
 titanic_predict_deck.py
 
+Warning: create a folder called 'output' in the script directory first.
+
 During the titanic exercise, we found that the missing deck values were hard to handle.
 This script will attempt to predict the deck values.
 
@@ -12,6 +14,7 @@ However, if we analyse the Titanic dataset and its properties, we don't seem to 
 information to predict this. We do have the 'class' column, which is more generalized than the deck column.
 This column ís in fact complete and is perhaps better to use for our prediction.
 """
+
 # The basics
 import pandas as pd
 import seaborn as sns
@@ -22,7 +25,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # Got that algorithm
-from sklearn import svm
+from sklearn.base import BaseEstimator
+from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
@@ -35,7 +39,8 @@ from sklearn.tree import DecisionTreeClassifier
 MODEL = "DecisionTree"
 
 
-def main():
+def main() -> None:
+    """ Main program flow """
     # Retrieve the dataset
     df = load_data()
     X, y = prepare_data(df)
@@ -53,10 +58,12 @@ def main():
 
 
 def load_data() -> pd.DataFrame:
+    """ Load and return the dataset """
     return sns.load_dataset("titanic")
 
 
 def prepare_data(df: pd.DataFrame):
+    """ Prepare the data for the ML algorithm """
     # Drop missing decks
     deck_info = df.dropna(subset=["deck"])
 
@@ -74,7 +81,8 @@ def prepare_data(df: pd.DataFrame):
     return X, y
 
 
-def fit_model(X_train, y_train):
+def fit_model(X_train: pd.DataFrame, y_train: pd.DataFrame):
+    """ Fit the model of choice, as defined in the global constant. """
     # Create the desired classifier
     if MODEL == "LogisticRegression":
         clf = LogisticRegression()
@@ -90,7 +98,7 @@ def fit_model(X_train, y_train):
         clf = MLPClassifier()
     # Default: SVM
     else:
-        clf = svm.SVC(kernel='linear')
+        clf = SVC(kernel='linear')
 
     # Fit the classifier
     clf.fit(X_train, y_train)
@@ -99,7 +107,8 @@ def fit_model(X_train, y_train):
     return clf
 
 
-def print_model_results(y_pred, y_test):
+def print_model_results(y_pred: pd.DataFrame, y_test: pd.DataFrame) -> None:
+    """ Print the results of the model """
     # Print accuracy
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {accuracy:.2f}")
@@ -108,10 +117,9 @@ def print_model_results(y_pred, y_test):
     print("\nClassification Report:")
     print(classification_report(y_test, y_pred))
 
-    return y_pred
 
-
-def plot_confusion_matrix(clf, y_test, y_pred):
+def plot_confusion_matrix(clf: BaseEstimator, y_test: pd.DataFrame, y_pred: pd.DataFrame) -> None:
+    """ Plot and save a confusion matrix """
     cm = confusion_matrix(y_test, y_pred)
     plt.figure()
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=clf.classes_, yticklabels=clf.classes_)
@@ -121,5 +129,6 @@ def plot_confusion_matrix(clf, y_test, y_pred):
     plt.savefig(f"./output/titanic_cm_{MODEL}.png")
 
 
+# If we are running this script, we do the whole thing.
 if __name__ == "__main__":
     main()
