@@ -46,5 +46,5 @@ print(principalDF.head(5))
 finalDf = pd.concat([principalDF, df[['species']]], axis=1)
 
 # Use a pairplot to visualize different subsets of dimensions
-sns.pairplot(data=finalDf, hue="species")
+sns.pairplot(data=finalDf, hue="species", palette="ocean")
 plt.show()
