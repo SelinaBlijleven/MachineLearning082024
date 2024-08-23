@@ -1,9 +1,15 @@
+"""
+pca_iris_visualization.py
+
+An example of a PCA application that is used to visualize the Iris dataset.
+"""
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
+# Tweak the number of components for PCA here. There are 4 features, so should be 1-3
 N_COMPONENTS = 2
 
 # Load the dataset
@@ -39,9 +45,6 @@ print(principalDF.head(5))
 # Concatenate the target column onto the principal features DF
 finalDf = pd.concat([principalDF, df[['species']]], axis=1)
 
-sns.scatterplot(data=finalDf, x="PC1", y="PC2", hue="species")
+# Use a pairplot to visualize different subsets of dimensions
+sns.pairplot(data=finalDf, hue="species")
 plt.show()
-
-if N_COMPONENTS > 2:
-    sns.scatterplot(data=finalDf, x="PC2", y="PC3", hue="species")
-    plt.show()
