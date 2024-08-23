@@ -25,8 +25,10 @@ Machine Learning examples from course in August 2024.
 - [Article on Logistic Regression](https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-logistic-regression/)
 - [Unsupervised learning algorithms (video)](https://www.youtube.com/watch?v=7Uk-cpOEecI)
 - [OpenAI Gymnasium for Reinforcement Learning Algorithms](https://github.com/Farama-Foundation/Gymnasium)
+- [Regularization (L1/L2) for Machine Learning](https://medium.com/@nerdjock/lesson-18-machine-learning-regularization-techniques-l1-lasso-and-l2-ridge-regularization-b9dc312c71fe)
 
 ## Evaluation Metrics
 
 - [Accuracy, precision, recall/sensitivity, specificity, F1 score](https://towardsdatascience.com/a-look-at-precision-recall-and-f1-score-36b5fd0dd3ec)
 
+## Fine-tuning
