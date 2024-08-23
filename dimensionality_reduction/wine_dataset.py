@@ -1,17 +1,13 @@
 """
 wine_dataset.py
 """
-import numpy as np
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
-from matplotlib.colors import LogNorm
 
 # Sklearn general tools
 from sklearn.datasets import load_wine
-from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
-from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler
 from sklearn.utils import Bunch
 
